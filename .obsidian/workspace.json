@@ -1,0 +1,221 @@
+{
+  "main": {
+    "id": "4a734c4e949ec275",
+    "type": "split",
+    "children": [
+      {
+        "id": "e939f8a411fbde6c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "67dd9efe002e9a09",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "e84d47a593dc0158",
+    "type": "split",
+    "children": [
+      {
+        "id": "732eb89c3964e148",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "30732ae931305fe5",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "2537b42208fccab8",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "d5a1ffd79925ac50",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200
+  },
+  "right": {
+    "id": "d660d0295aaf9aac",
+    "type": "split",
+    "children": [
+      {
+        "id": "95518c1a23631e43",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "8f52f5ef3adb3389",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Welcome.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for Welcome"
+            }
+          },
+          {
+            "id": "e6b0ba20759d0fe9",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Welcome.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from Welcome"
+            }
+          },
+          {
+            "id": "4081c9501157b510",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "64bcdf5a56d2449d",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "3dba2facb8efe2c2",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Welcome.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of Welcome"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "67dd9efe002e9a09",
+  "lastOpenFiles": [
+    "wiki/sources/configure-your-annotator.md",
+    "wiki/concepts/annotator-configuration.md",
+    "wiki/reference/code-entrypoints.md",
+    "wiki/reference/ros1-vs-ros2-notes.md",
+    "wiki/reference/commands.md",
+    "wiki/workflows/run-in-docker.md",
+    "wiki/workflows/use-database-storage.md",
+    "wiki/workflows/run-query-workflow.md",
+    "wiki/workflows/configure-annotator.md",
+    "wiki/workflows/create-annotator.md",
+    "wiki/workflows/create-package.md",
+    "wiki/workflows/run-demo-pipeline.md",
+    "wiki/concepts/package-structure.md",
+    "wiki/concepts/docker-usage.md",
+    "wiki/concepts/database-storage.md",
+    "wiki/concepts/behavior-tree-query-control.md",
+    "wiki/concepts/query-interface.md",
+    "wiki/concepts/common-analysis-structure.md",
+    "wiki/concepts/annotators.md",
+    "wiki/concepts/pipelines.md",
+    "wiki/concepts/robokudo.md",
+    "wiki/sources/running-robokudo-in-a-docker-container.md",
+    "wiki/sources/reading-data-from-a-database.md",
+    "wiki/sources/advanced-query-handling.md",
+    "wiki/sources/query-handling-in-robokudo.md",
+    "wiki/sources/create-your-own-annotator.md",
+    "wiki/workflows",
+    "wiki/sources",
+    "wiki/reference",
+    "wiki/questions",
+    "wiki/concepts",
+    "wiki",
+    "raw/sources/robokudo-docs/run_pipeline.html",
+    "raw/sources/robokudo-docs/query_interface.html",
+    "raw/sources/robokudo-docs/docker_rk.html",
+    "raw/sources/robokudo-docs/database_storage.html"
+  ]
+}

@@ -2,7 +2,7 @@
 type: reference
 status: active
 created: 2026-06-28
-updated: 2026-06-29
+updated: 2026-07-01
 sources:
   - "[[sources/running-a-pipeline-in-robokudo|Running a pipeline in RoboKudo]]"
   - "[[sources/create-your-own-robokudo-package|Create your own RoboKudo package]]"
@@ -16,19 +16,19 @@ sources:
 
 # Source Integrity
 
-The `wiki/sources/` files are not summaries. They must remain exact mirrors of the current converted markdown corpus in `raw/converted/robokudo-docs`.
+The `wiki/sources/` files are not summaries. They must remain exact mirrors of the current markdown source corpus in `raw/`.
 
 ## Mirror Rule
 
-- Copy every `.md` file from `raw/converted/robokudo-docs` into `wiki/sources/` without changing bytes.
+- Copy every root-level `.md` file from `raw/` into `wiki/sources/` without changing bytes.
 - Do not add wiki-specific frontmatter, summaries, excerpts, or cleanup edits to source mirrors.
 - Put synthesis only in `wiki/overview.md`, `wiki/concepts/`, `wiki/workflows/`, and `wiki/reference/`.
 
 ## Verification
 
 ```bash
-diff -qr raw/converted/robokudo-docs wiki/sources
-wc -l raw/converted/robokudo-docs/*.md wiki/sources/*.md
+diff -qr raw wiki/sources
+wc -l raw/*.md wiki/sources/*.md
 rg -n "T[O]DO|F[I]XME|py[c]ram|Py[C]RAM" wiki AGENTS.md
 ```
 

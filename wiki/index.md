@@ -2,7 +2,7 @@
 type: overview
 status: active
 created: 2026-06-28
-updated: 2026-06-29
+updated: 2026-07-01
 sources:
   - "[[sources/running-a-pipeline-in-robokudo|Running a pipeline in RoboKudo]]"
   - "[[sources/create-your-own-robokudo-package|Create your own RoboKudo package]]"
@@ -16,7 +16,7 @@ sources:
 
 # RoboKudo Wiki Index
 
-Start here before answering questions about this vault. The pages in `wiki/sources/` are full-content mirrors copied from `raw/converted/robokudo-docs`; they are not summaries and must stay byte-for-byte identical to the converted source corpus.
+Start here before answering questions about this vault. The pages in `wiki/sources/` are full-content mirrors copied from `raw/`; they are not summaries and must stay byte-for-byte identical to the source corpus.
 
 ## Overview
 
@@ -28,18 +28,18 @@ Start here before answering questions about this vault. The pages in `wiki/sourc
 
 - [[tutorials/robokudo-tutorial-overview|RoboKudo Tutorial overview]] - connects all captured tutorials listed by the upstream navigation.
 
-The upstream navigation references `wsl_installation.html` for a `Using RoboKudo within WSL` tutorial, but that source is not present in the current raw or converted corpus, so no wiki node is created for it.
+Earlier upstream navigation referenced a `Using RoboKudo within WSL` tutorial, but no matching markdown source is present in the current `raw/` corpus, so no wiki node is created for it.
 
 ## Source Mirrors
 
-- [[sources/running-a-pipeline-in-robokudo|Running a pipeline in RoboKudo]] - full mirror of `raw/converted/robokudo-docs/running-a-pipeline-in-robokudo.md`.
-- [[sources/create-your-own-robokudo-package|Create your own RoboKudo package]] - full mirror of `raw/converted/robokudo-docs/create-your-own-robokudo-package.md`.
-- [[sources/create-your-own-annotator|Create your own Annotator]] - full mirror of `raw/converted/robokudo-docs/create-your-own-annotator.md`.
-- [[sources/configure-your-annotator|Configure your Annotator]] - full mirror of `raw/converted/robokudo-docs/configure-your-annotator.md`.
-- [[sources/query-handling-in-robokudo|Query handling in RoboKudo]] - full mirror of `raw/converted/robokudo-docs/query-handling-in-robokudo.md`.
-- [[sources/advanced-query-handling|Advanced Query Handling]] - full mirror of `raw/converted/robokudo-docs/advanced-query-handling.md`.
-- [[sources/reading-data-from-a-database|Reading data from a Database]] - full mirror of `raw/converted/robokudo-docs/reading-data-from-a-database.md`.
-- [[sources/running-robokudo-in-a-docker-container|Running RoboKudo in a Docker container]] - full mirror of `raw/converted/robokudo-docs/running-robokudo-in-a-docker-container.md`.
+- [[sources/running-a-pipeline-in-robokudo|Running a pipeline in RoboKudo]] - full mirror of `raw/running-a-pipeline-in-robokudo.md`.
+- [[sources/create-your-own-robokudo-package|Create your own RoboKudo package]] - full mirror of `raw/create-your-own-robokudo-package.md`.
+- [[sources/create-your-own-annotator|Create your own Annotator]] - full mirror of `raw/create-your-own-annotator.md`.
+- [[sources/configure-your-annotator|Configure your Annotator]] - full mirror of `raw/configure-your-annotator.md`.
+- [[sources/query-handling-in-robokudo|Query handling in RoboKudo]] - full mirror of `raw/query-handling-in-robokudo.md`.
+- [[sources/advanced-query-handling|Advanced Query Handling]] - full mirror of `raw/advanced-query-handling.md`.
+- [[sources/reading-data-from-a-database|Reading data from a Database]] - full mirror of `raw/reading-data-from-a-database.md`.
+- [[sources/running-robokudo-in-a-docker-container|Running RoboKudo in a Docker container]] - full mirror of `raw/running-robokudo-in-a-docker-container.md`.
 
 ## Concepts
 

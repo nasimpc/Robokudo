@@ -32,3 +32,7 @@ Added [[tutorials/robokudo-tutorial-overview|RoboKudo Tutorial overview]] to con
 ## [2026-06-29] lint | Fixed Obsidian tutorial graph links
 
 Repointed generated wiki links from `wiki/...` targets to vault-root paths such as `sources/...` so the Obsidian vault under `wiki/` links to real notes instead of creating empty duplicate nodes. Removed the missing-source WSL placeholder note and the stray nested bad-link note.
+
+## [2026-07-01] lint | Updated raw corpus layout guidance
+
+Updated maintainer guidance and source-integrity references after the RoboKudo markdown corpus moved to root-level `raw/*.md` files. Verified that `wiki/sources/` remains a byte-for-byte mirror of `raw/` and kept source mirrors unchanged.

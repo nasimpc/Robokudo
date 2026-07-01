@@ -2,7 +2,7 @@
 type: reference
 status: active
 created: 2026-06-28
-updated: 2026-06-29
+updated: 2026-07-01
 sources:
   - "[[sources/running-a-pipeline-in-robokudo|Running a pipeline in RoboKudo]]"
   - "[[sources/create-your-own-robokudo-package|Create your own RoboKudo package]]"
@@ -39,7 +39,6 @@ Important code paths, classes, and APIs mentioned in the source mirrors.
 
 - `robokudo_msgs/ObjectDesignator` - object-centric query/result data.
 - `robokudo_msgs/Query` - ROS action type for the query interface.
-- `BBIdentifier.QUERY_ANSWER` - ROS 1 blackboard key for query answers.
 - `QueryHandler.send_answer` - ROS 2 helper used to send query answers.
 - `catch_and_raise_to_blackboard` - decorator used to surface query failures.
 

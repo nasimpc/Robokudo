@@ -36,3 +36,7 @@ Repointed generated wiki links from `wiki/...` targets to vault-root paths such 
 ## [2026-07-01] lint | Updated raw corpus layout guidance
 
 Updated maintainer guidance and source-integrity references after the RoboKudo markdown corpus moved to root-level `raw/*.md` files. Verified that `wiki/sources/` remains a byte-for-byte mirror of `raw/` and kept source mirrors unchanged.
+
+## [2026-07-01] lint | Removed legacy ROS guidance from generated wiki
+
+Updated generated overview, concept, workflow, and reference pages to focus on ROS 2 commands and APIs. Removed the generated legacy comparison note while preserving `wiki/sources/` as byte-for-byte archival mirrors of `raw/`.

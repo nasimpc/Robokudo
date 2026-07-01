@@ -2,7 +2,7 @@
 type: reference
 status: active
 created: 2026-06-28
-updated: 2026-06-29
+updated: 2026-07-01
 sources:
   - "[[sources/running-a-pipeline-in-robokudo|Running a pipeline in RoboKudo]]"
   - "[[sources/create-your-own-robokudo-package|Create your own RoboKudo package]]"
@@ -21,18 +21,11 @@ This page collects command snippets from the source mirrors. Check the linked so
 ## Test Data
 
 ```bash
-curl https://robokudo.ai.uni-bremen.de/_static/test.bag --output ~/robokudo_ws/test.bag
 curl https://robokudo.ai.uni-bremen.de/_static/test.tar.gz --output ~/Downloads/test.tar.gz
 tar -xzf ~/Downloads/test.tar.gz -C ~/ros2_ws/
 ```
 
 ## Run Demo Pipeline
-
-```bash
-roscore
-rosrun robokudo main.py _ae=demo
-rosbag play ~/robokudo_ws/test.bag --loop
-```
 
 ```bash
 ros2 run robokudo_ros main _ae=demo
@@ -42,16 +35,8 @@ ros2 bag play ~/ros2_ws/test --loop
 ## Create Package
 
 ```bash
-rosrun robokudo rk_create_package rk_tutorial
 ros2 run robokudo_ros rk_create_package rk_tutorial
 pip install -e ./rk_tutorial
-```
-
-```bash
-cd ~/robokudo_ws
-catkin build
-source ~/robokudo_ws/devel/setup.bash
-rosrun robokudo main.py _ae=my_demo _ros_pkg=rk_tutorial
 ```
 
 ```bash
@@ -64,7 +49,6 @@ ros2 run robokudo_ros main _ae=my_demo _ros_pkg=rk_tutorial
 ## Query Handling
 
 ```bash
-rosrun actionlib_tools axclient.py /robokudo/query
 ros2 action send_goal /robokudo/query robokudo_msgs/Query '{<goal content as dict/json>}'
 ros2 action send_goal /robokudo/query robokudo_msgs/Query "$(cat /path/to/your/query.json)"
 ```
@@ -82,11 +66,8 @@ python3 ~/ros2_ws/src/robokudo/robokudo/src/scripts/query_test_client.py --preem
 
 ```bash
 apt install mongodb
-rosrun robokudo main.py _ae=storage
-rosbag play test.bag
 ros2 run robokudo_ros main _ae=storage
 ros2 bag play test/
-rosrun robokudo main.py _ae=demo_from_storage
 ros2 run robokudo_ros main _ae=demo_from_storage
 ```
 
@@ -100,5 +81,4 @@ docker run -it --net=host --gpus all   --env="NVIDIA_DRIVER_CAPABILITIES=all"   
 
 ## Related
 
-- [[reference/ros1-vs-ros2-notes|ROS 1 vs ROS 2 Notes]]
 - [[concepts/pipelines|Pipelines]]

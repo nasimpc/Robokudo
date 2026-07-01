@@ -2,7 +2,7 @@
 type: overview
 status: active
 created: 2026-06-28
-updated: 2026-06-29
+updated: 2026-07-01
 sources:
   - "[[sources/running-a-pipeline-in-robokudo|Running a pipeline in RoboKudo]]"
   - "[[sources/create-your-own-robokudo-package|Create your own RoboKudo package]]"
@@ -29,7 +29,7 @@ The tutorial path is connected through [[tutorials/robokudo-tutorial-overview|Ro
 - Query support is action-oriented: receive a task, place it into the CAS, let annotators react, and return a result, failure, or feedback.
 - Advanced query handling is ROS 2-specific in this corpus and adds validation, live feedback, cancellation, and preemption behavior.
 - Database storage records perception inputs for faster development and replay.
-- Docker support is documented mainly for ROS 1 and GPU-enabled environments.
+- Docker support covers GPU-enabled container execution for ROS 2 workflows.
 
 ## Reading Path
 

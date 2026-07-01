@@ -66,9 +66,8 @@ Earlier upstream navigation referenced a `Using RoboKudo within WSL` tutorial, b
 
 ## Reference
 
-- [[reference/commands|Commands]] - ROS 1, ROS 2, Docker, and MongoDB command snippets from the tutorials.
+- [[reference/commands|Commands]] - ROS 2, Docker, and MongoDB command snippets from the tutorials.
 - [[reference/code-entrypoints|Code Entrypoints]] - important modules, files, and APIs mentioned by the sources.
-- [[reference/ros1-vs-ros2-notes|ROS 1 vs ROS 2 Notes]] - compatibility and command differences.
 - [[reference/source-integrity|Source Integrity]] - mirror rules and verification commands.
 
 ## Questions

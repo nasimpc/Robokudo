@@ -1,26 +1,21 @@
 ---
 type: concept
-status: draft
-created: 2026-06-27
-updated: 2026-06-27
+status: active
+created: 2026-06-28
+updated: 2026-06-29
 sources:
-  - "[[wiki/sources/running-a-pipeline-in-robokudo|Running a pipeline in RoboKudo]]"
-  - "[[wiki/sources/create-your-own-robokudo-package|Create your own RoboKudo package]]"
+  - "[[sources/running-a-pipeline-in-robokudo|Running a pipeline in RoboKudo]]"
+  - "[[sources/create-your-own-robokudo-package|Create your own RoboKudo package]]"
+  - "[[sources/advanced-query-handling|Advanced Query Handling]]"
 ---
 
 # Pipelines
 
-RoboKudo pipelines are called analysis engines in the tutorials. They are behavior-tree definitions located under `descriptors/analysis_engines` inside a RoboKudo package.
+A RoboKudo pipeline is an analysis engine: a Python descriptor that builds a behavior tree from annotators and helper behaviors. The demo pipeline starts with `pipeline_init()`, reads sensor data, preprocesses images, crops point clouds, finds planes, extracts clusters, and can add annotators such as `ClusterColorAnnotator`.
 
-## Notes
-
-- The analysis engine name is passed at startup as `_ae=...`.
-- The built-in demo pipeline is started with `_ae=demo`.
-- A custom copied pipeline can be renamed to `my_demo` and started with `_ae=my_demo _ros_pkg=rk_tutorial`.
-- Pipelines compose annotators and other behavior-tree nodes.
+At runtime the analysis engine name is passed as `_ae`, for example `demo`, `storage`, `demo_from_storage`, `my_demo`, or `query_complex`.
 
 ## Related
 
-- [[wiki/workflows/run-demo-pipeline|Run Demo Pipeline]]
-- [[wiki/workflows/create-package|Create Package]]
-- [[wiki/concepts/annotators|Annotators]]
+- [[workflows/run-demo-pipeline|Run Demo Pipeline]]
+- [[reference/code-entrypoints|Code Entrypoints]]

@@ -2,72 +2,48 @@
 
 This workspace is an LLM-maintained personal wiki for RoboKudo notes.
 
-## Layers
+## Required First Step
 
-- `raw/sources/` contains immutable original source material. Read from it only for archival verification; do not edit these files.
-- `raw/converted/` contains generated markdown mirrors of raw sources. Agents should prefer these converted files when they need source-level detail because they are easier to search and read than HTML.
-- `wiki/` contains generated markdown maintained by the LLM.
-- `.obsidian/` contains Obsidian vault settings and should be preserved.
+Before answering substantive questions or editing the wiki, read `wiki/index.md` first. Use it as the navigation catalog for source mirrors, concepts, workflows, and references.
+
+## Source Corpus
+
+- `raw/sources/` contains original source material. Read from it for archival verification; do not edit these files unless the user explicitly asks for source maintenance.
+- `raw/converted/robokudo-docs/` is the canonical markdown corpus for the current RoboKudo wiki.
+- `wiki/sources/` must contain byte-for-byte full-content mirrors of the markdown files in `raw/converted/robokudo-docs/`.
+- `wiki/` contains the Obsidian vault plus generated navigation, synthesis, workflow, and reference pages maintained by agents.
+- `wiki/.obsidian/` contains Obsidian vault settings and should be preserved.
+
+## Source Mirror Rule
+
+Never replace a `wiki/sources/*.md` full mirror with a summary. Do not add wiki-specific frontmatter, excerpts, cleanup edits, or commentary to source mirrors. If the converted corpus changes, copy the converted markdown files into `wiki/sources/` again and verify with `diff -qr raw/converted/robokudo-docs wiki/sources`.
 
 ## Required Workflow
 
-Before answering substantive questions, read `wiki/index.md` first, then open the relevant pages. Prefer existing wiki pages for synthesized knowledge. If a page is missing detail, read the matching markdown mirror in `raw/converted/` before falling back to the original file in `raw/sources/`.
+When ingesting or regenerating RoboKudo docs:
 
-Do not treat `raw/converted/` as a manually curated wiki. It is a generated readability layer. If a converted file conflicts with its original source, trust `raw/sources/` and regenerate the converted file.
-
-When ingesting a new source:
-
-1. Add or place it under `raw/sources/`.
-2. Create or regenerate a markdown mirror under `raw/converted/` when the source format is less agent-readable than markdown.
-3. Create or update a source summary in `wiki/sources/`.
-4. Update affected concept, workflow, and reference pages.
-5. Add or update links between pages using full-path Obsidian links, for example `[[wiki/concepts/annotators|Annotators]]`.
-6. Update `wiki/index.md`.
-7. Append an entry to `wiki/log.md`.
+1. Treat `raw/converted/robokudo-docs/` as the source corpus for markdown content.
+2. Copy every converted markdown file into `wiki/sources/` as a full mirror.
+3. Update affected concept, workflow, and reference pages.
+4. Use vault-root Obsidian links because `wiki/` is the Obsidian vault root, for example `[[concepts/annotators|Annotators]]`.
+5. Update `wiki/index.md`.
+6. Append an entry to `wiki/log.md`.
+7. Run mirror, line-count, wrong-domain, and Obsidian-link checks.
 
 When answering a query:
 
-1. Search `wiki/index.md` and the relevant pages.
-2. Cite wiki pages with Obsidian links.
-3. If the answer is reusable, save it under `wiki/questions/` and add it to the index and log.
-
-When linting:
-
-- Check for broken links.
-- Find orphan pages that are not linked from `wiki/index.md` or other pages.
-- Look for claims that need source support.
-- Flag contradictions between pages or between old wiki pages and newer sources.
-- Suggest missing concept pages when important terms recur.
+1. Read `wiki/index.md` first.
+2. Open the relevant synthesis pages.
+3. If source-level detail matters, open the matching full mirror in `wiki/sources/` or `raw/converted/robokudo-docs/`.
+4. Cite wiki pages with Obsidian links when helpful.
 
 ## Page Conventions
 
-Every generated page should start with YAML frontmatter:
+Generated synthesis pages should start with YAML frontmatter using one of these `type` values: `overview`, `concept`, `workflow`, `reference`, `tutorial-index`, `tutorial`, or `question`.
 
-```yaml
----
-type: concept
-status: draft
-created: YYYY-MM-DD
-updated: YYYY-MM-DD
-sources:
-  - "[[wiki/sources/source-page|Source title]]"
----
-```
+Converted source mirrors may use `type: converted-source` and `status: generated` because that frontmatter comes from the converted corpus. Do not edit it manually in `wiki/sources/`.
 
-Allowed `type` values are `overview`, `source`, `concept`, `workflow`, `reference`, and `question`.
-
-Use concise, factual prose. Prefer short sections, direct links, and task-oriented summaries. Do not paste long source excerpts unless a short quote is necessary. Raw sources remain the source of truth.
-
-Converted source mirrors may use `type: converted-source` and `status: generated`. They are not wiki pages and do not need to be listed in `wiki/index.md`.
-
-## Naming
-
-- Use lowercase kebab-case filenames.
-- Keep source summaries in `wiki/sources/`.
-- Keep conceptual synthesis in `wiki/concepts/`.
-- Keep step-by-step tasks in `wiki/workflows/`.
-- Keep command/API/path lookups in `wiki/reference/`.
-- Keep reusable answers in `wiki/questions/`.
+Use lowercase kebab-case filenames. Keep source mirrors in `wiki/sources/`, tutorial sequence metadata in `wiki/tutorials/`, conceptual synthesis in `wiki/concepts/`, step-by-step tasks in `wiki/workflows/`, command/API/path lookups in `wiki/reference/`, and reusable answers in `wiki/questions/`.
 
 ## Logging
 

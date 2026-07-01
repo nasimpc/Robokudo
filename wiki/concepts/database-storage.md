@@ -1,26 +1,19 @@
 ---
 type: concept
-status: draft
-created: 2026-06-27
-updated: 2026-06-27
+status: active
+created: 2026-06-28
+updated: 2026-06-29
 sources:
-  - "[[wiki/sources/reading-data-from-a-database|Reading data from a Database]]"
+  - "[[sources/reading-data-from-a-database|Reading data from a Database]]"
 ---
 
 # Database Storage
 
-RoboKudo can use MongoDB to store and replay perception data. The source tutorial frames this as a development aid because replaying from a database can be faster than live sensors or bag files and can avoid some transform lookup problems.
+RoboKudo can record and replay perception data through MongoDB instead of reading directly from a robot or bag file. The source describes this as useful for faster development and for avoiding some transform lookup problems.
 
-## Flow
-
-- Start RoboKudo with the storage analysis engine.
-- Wait until the system initializes.
-- Feed sensor data from a bag file or robot.
-- Close RoboKudo after data is recorded.
-- Read stored data back through a storage-oriented analysis engine.
+The storage workflow starts RoboKudo with the `storage` analysis engine, plays a ROS bag, triggers the visualizer storage action, and later runs `demo_from_storage` to read the stored data. Multiple scenes can be separated by setting `StorageWriter` and camera config database names.
 
 ## Related
 
-- [[wiki/workflows/use-database-storage|Use Database Storage]]
-- [[wiki/concepts/pipelines|Pipelines]]
-- [[wiki/reference/commands|Commands]]
+- [[workflows/use-database-storage|Use Database Storage]]
+- [[reference/commands|Commands]]

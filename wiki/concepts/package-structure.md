@@ -1,26 +1,19 @@
 ---
 type: concept
-status: draft
-created: 2026-06-27
-updated: 2026-06-27
+status: active
+created: 2026-06-28
+updated: 2026-06-29
 sources:
-  - "[[wiki/sources/create-your-own-robokudo-package|Create your own RoboKudo package]]"
+  - "[[sources/create-your-own-robokudo-package|Create your own RoboKudo package]]"
 ---
 
 # Package Structure
 
-RoboKudo supports custom perception code in separate ROS packages. The tutorial package is named `rk_tutorial`.
+Custom RoboKudo functionality can live in a separate ROS package such as `rk_tutorial`. The package generator creates folders for annotators and descriptors, including analysis engine descriptors.
 
-## Important Directories
-
-- `annotators/` holds custom annotator implementations.
-- `descriptors/analysis_engines/` holds pipeline definitions.
-- ROS 1 examples place code under `src/rk_tutorial/`.
-- ROS 2 examples use a flatter Python package layout under `rk_tutorial/`.
-- `package.xml`, `setup.py`, and, for ROS 2, `setup.cfg` carry package metadata and install configuration.
+The ROS 1 and ROS 2 structures differ slightly, but both support adding custom annotators and analysis engines that depend on RoboKudo core packages. ROS 1 packages also require CMake dependency updates when adding RoboKudo package dependencies.
 
 ## Related
 
-- [[wiki/workflows/create-package|Create Package]]
-- [[wiki/concepts/pipelines|Pipelines]]
-- [[wiki/concepts/annotators|Annotators]]
+- [[workflows/create-package|Create Package]]
+- [[workflows/create-annotator|Create Annotator]]

@@ -1,30 +1,25 @@
 ---
 type: workflow
-status: draft
-created: 2026-06-27
-updated: 2026-06-27
+status: active
+created: 2026-06-28
+updated: 2026-06-29
 sources:
-  - "[[wiki/sources/reading-data-from-a-database|Reading data from a Database]]"
+  - "[[sources/reading-data-from-a-database|Reading data from a Database]]"
 ---
 
 # Use Database Storage
 
-Use this workflow to record perception data into MongoDB and replay it for development.
+Use this workflow to store perception input in MongoDB and replay it later.
 
 ## Steps
 
-1. Install and start MongoDB.
-2. Start RoboKudo with the storage analysis engine.
-3. Wait for initialization.
-4. Feed sensor data from the sample bag file or a live robot.
-5. Close RoboKudo after recording.
-6. Start the relevant storage-reading analysis engine to replay stored data.
+1. Install MongoDB as described for the target ROS version.
+2. Start RoboKudo with `_ae=storage`.
+3. Play the test bag or ROS 2 bag.
+4. In the visualizer, trigger storage from the `ImagePreprocessor` output as the source page describes.
+5. Start RoboKudo with `_ae=demo_from_storage` to read from storage.
+6. For multiple scenes, configure `StorageWriter.Descriptor().parameters.db_name` and the `config_mongodb_playback.py` camera config.
 
-## Notes
+## Source
 
-If using sensors other than the tutorial sample bag, adapt the storage analysis engine, collection reader, and camera config.
-
-## See Also
-
-- [[wiki/concepts/database-storage|Database Storage]]
-- [[wiki/reference/commands|Commands]]
+- [[sources/reading-data-from-a-database|Reading data from a Database]]

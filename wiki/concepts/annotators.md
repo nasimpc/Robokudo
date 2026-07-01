@@ -1,30 +1,22 @@
 ---
 type: concept
-status: draft
-created: 2026-06-27
-updated: 2026-06-27
+status: active
+created: 2026-06-28
+updated: 2026-06-29
 sources:
-  - "[[wiki/sources/create-your-own-annotator|Create your own Annotator]]"
-  - "[[wiki/sources/configure-your-annotator|Configure your Annotator]]"
+  - "[[sources/create-your-own-annotator|Create your own Annotator]]"
+  - "[[sources/configure-your-annotator|Configure your Annotator]]"
+  - "[[sources/running-a-pipeline-in-robokudo|Running a pipeline in RoboKudo]]"
 ---
 
 # Annotators
 
-Annotators are RoboKudo's reusable perception components. They inherit from `BaseAnnotator`, participate in the behavior tree, and normally implement their main logic in `update`.
+Annotators are reusable behavior-tree nodes that perform perception work. They commonly inherit from `BaseAnnotator`, implement `update`, read inputs from the CAS, and write annotations or visualization output.
 
-## Responsibilities
-
-- Read data from the [[wiki/concepts/common-analysis-structure|Common Analysis Structure]].
-- Add or modify annotations for downstream annotators.
-- Return behavior-tree status values.
-- Expose configuration through descriptors when parameters should be pipeline-specific.
-
-## Practical Constraint
-
-The tutorial warns that behavior-tree ticks should remain short. Long-running computer-vision work should use `ThreadedAnnotator`.
+The custom annotator tutorial builds `MyFirstAnnotator`, which reads a point cloud from the CAS and logs its size. The pipeline tutorials show standard annotators such as `CollectionReaderAnnotator`, `ImagePreprocessorAnnotator`, `PointcloudCropAnnotator`, `PlaneAnnotator`, `PointCloudClusterExtractor`, and `ClusterColorAnnotator`.
 
 ## Related
 
-- [[wiki/workflows/create-annotator|Create Annotator]]
-- [[wiki/concepts/annotator-configuration|Annotator Configuration]]
-- [[wiki/reference/code-entrypoints|Code Entrypoints]]
+- [[concepts/common-analysis-structure|Common Analysis Structure]]
+- [[concepts/annotator-configuration|Annotator Configuration]]
+- [[workflows/create-annotator|Create Annotator]]

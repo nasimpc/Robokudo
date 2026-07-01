@@ -1,15 +1,16 @@
 ---
 type: converted-source
 status: generated
-created: 2026-06-27
-updated: 2026-06-27
+created: 2026-06-28
+updated: 2026-06-28
 source_file: raw/sources/robokudo-docs/Advanced_query_handling.html
 source_type: html
 ---
 
 <!-- Generated markdown mirror. Do not edit manually; regenerate from the HTML source. -->
-
 # Advanced Query Handling
+
+---
 
 ## Introduction
 
@@ -17,53 +18,27 @@ This tutorial builds upon the earlier query handling tutorial. It assumes you ar
 
 By the end of this tutorial, you will:
 
-Understand how the Query Interface works in RoboKudo.
+- Understand how the Query Interface works in RoboKudo.
+- Learn how queries are validated, processed, monitored, and canceled in a behavior tree.
+- See how live feedback and final results are handled dynamically.
 
-Learn how queries are validated, processed, monitored, and canceled in a behavior tree.
+> **Warning**
+>
+> This tutorial only works with ROS 2.
 
-See how live feedback and final results are handled dynamically.
-
-Warning
-
-This tutorial only works with ROS 2.
+---
 
 ## Important Concepts
 
-Term
+| Term | Meaning | Why it matters |
+| --- | --- | --- |
+| Query | A message asking the robot to do something (e.g., “recognize objects on the kitchen table”). | It starts the pipeline. |
+| Feedback | Small updates showing the task is in progress. | Helps monitor that the perception system is alive and working. |
+| Final Result | The final answer after the task finishes. | Relevant to other systems running on the robot to continue execution. |
+| Preemption | (Advanced word for) Cancellation. If needed, we can stop a task early. | Allows to abort running perception tasks if the task is not relevant anymore or has to be replaced by another one. Supports reactivity. |
+| Behavior Tree | A smart structure where tasks run in order and return SUCCESS, FAILURE, or RUNNING. | Makes building robot logic easy and modular. |
 
-Meaning
-
-Why it matters
-
-Query
-
-A message asking the robot to do something (e.g., “recognize objects on the kitchen table”).
-
-It starts the pipeline.
-
-Feedback
-
-Small updates showing the task is in progress.
-
-Helps monitor that the perception system is alive and working.
-
-Final Result
-
-The final answer after the task finishes.
-
-Relevant to other systems running on the robot to continue execution.
-
-Preemption
-
-(Advanced word for) Cancellation. If needed, we can stop a task early.
-
-Allows to abort running perception tasks if the task is not relevant anymore or has to be replaced by another one. Supports reactivity.
-
-Behavior Tree
-
-A smart structure where tasks run in order and return SUCCESS, FAILURE, or RUNNING.
-
-Makes building robot logic easy and modular.
+---
 
 ## Full Working Example (query_complex.py)
 
@@ -138,6 +113,8 @@ class AnalysisEngine(AnalysisEngineInterface):
         return seq
 ```
 
+---
+
 ## Full Behavior Tree Overview
 
 Here’s a visual map of the pipeline:
@@ -162,21 +139,23 @@ RootNodeWithGUI
     └── GenerateQueryResult
 ```
 
+---
+
 ## QueryFeedbackAndCount – The Worker Node
 
 A simple example node representing a long running task that sends feedback while running.
 
 What it does:
 
-Counts from 0 to 50.
-
-Sends feedback after each number.
+- Counts from 0 to 50.
+- Sends feedback after each number.
 
 Key points:
 
-Uses the QueryHandler to send feedback.
+- Uses the `QueryHandler` to send feedback.
+- Returns `RUNNING` while still counting, and `SUCCESS` when finished.
 
-Returns RUNNING while still counting, and SUCCESS when finished.
+---
 
 ## Preemption Handling with ConditionalSelector
 
@@ -196,83 +175,62 @@ ConditionalSelector (NoMemory)
 
 What it does:
 
-Always checks if a cancel request (preemption) has been issued.
+- Always checks if a cancel request (preemption) has been issued.
+- If detected, stops execution immediately by succeeding early.
+- Otherwise, proceeds to run the full task sequence.
 
-If detected, stops execution immediately by succeeding early.
+Why `memory=False`?
 
-Otherwise, proceeds to run the full task sequence.
+- Cancellation status must be re-evaluated on every tick to react instantly.
+- Prevents stale decisions.
 
-Why memory=False?
-
-Cancellation status must be re-evaluated on every tick to react instantly.
-
-Prevents stale decisions.
+---
 
 ## ActionServerNoPreemptRequest and Inverter
 
 What they do:
 
-ActionServerNoPreemptRequest detects cancel requests via the blackboard.
-
-If cancel is active → returns FAILURE.
-
-Otherwise → returns SUCCESS.
-
-The Inverter flips this result:
-
-Cancellation → becomes SUCCESS (Selector stops task).
-
-No cancellation → becomes FAILURE (Selector continues to task).
+- `ActionServerNoPreemptRequest` detects cancel requests via the blackboard.
+    - If cancel is active → returns `FAILURE`.
+    - Otherwise → returns `SUCCESS`.
+- The `Inverter` flips this result:
+    - Cancellation → becomes `SUCCESS` (Selector stops task).
+    - No cancellation → becomes `FAILURE` (Selector continues to task).
 
 Why inversion is needed:
 
-A Selector proceeds on first SUCCESS.
+- A `Selector` proceeds on first `SUCCESS`.
+- The inverter makes cancellation detectable as a `SUCCESS` condition.
 
-The inverter makes cancellation detectable as a SUCCESS condition.
+---
 
 ## Action Client – How to Test the Pipeline
 
-To test this query pipeline, you can use the query_test_client.py script (located in robokudo/robokudo/src/scripts/query_test_client.py).
-
-This script sends a query, receives live feedback, and can cancel the task mid-way if needed.
+To test this query pipeline, you can use the `query_test_client.py` script (located in `robokudo/robokudo/src/scripts/query_test_client.py`). This script sends a query, receives live feedback, and can cancel the task mid-way if needed.
 
 This script is helpful for simulating real-world queries, verifying feedback flow, and testing cancellation behavior.
 
 You can use the script as follows:
 
-Start RoboKudo with the query_complex.py analysis engine:
+1. Start RoboKudo with the `query_complex.py` analysis engine:
+   ```bash
+   python3 ~/ros2_ws/src/robokudo/robokudo/src/scripts/main.py _ae query_complex
+   ```
+2. In another terminal, run the bag file:
+   ```bash
+   ros2 bag play ~/ros2_ws/test --loop
+   ```
+3. Run the query test client:
+   ```python
+   python3 ~/ros2_ws/src/robokudo/robokudo/src/scripts/query_test_client.py
+   ```
 
-```
-python3 ~/ros2_ws/src/robokudo/robokudo/src/scripts/main.py _ae query_complex
-```
-
-In another terminal, run the bag file:
+The test client will send a query, receive live feedback, and can cancel the task mid-way if needed. To cancel the goal mid-way, press `ctrl+c` in the terminal where you started the test client or let the client cancel it automatically after a given time with a CLI argument:
 
 ```bash
-ros2 bag play ~/ros2_ws/test --loop
-```
-
-Run the query test client:
-
-```
-python3 ~/ros2_ws/src/robokudo/robokudo/src/scripts/query_test_client.py
-```
-
-The test client will send a query, receive live feedback, and can cancel the task mid-way if needed.
-To cancel the goal mid-way, press ctrl+c in the terminal where you started the test client or let the client cancel it automatically after a given time with a CLI argument:
-
-```
 python3 ~/ros2_ws/src/robokudo/robokudo/src/scripts/query_test_client.py --preempt_timer=5.0
 ```
 
 This will cancel the goal automatically after 5 seconds.
 
-- Advanced Query Handling
-- Introduction
-- Important Concepts
-- Full Working Example (query_complex.py)
-- Full Behavior Tree Overview
-- QueryFeedbackAndCount – The Worker Node
-- Preemption Handling with ConditionalSelector
-- ActionServerNoPreemptRequest and Inverter
-- Action Client – How to Test the Pipeline
+---
